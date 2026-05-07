@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ROBOTBRAG26 Demo</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h1 class="arduino-text">Arduino UNO Q - ROBOTBRAG26 Demo</h1>
+    </div>
+
+    <div class="main-content">
+        <div class="container" id="video-container">
+            <div id="videoFeedContainer">
+                <div id="videoPlaceholder" class="camera-status">
+                    <p>Connecting to Video Stream...</p>
+                </div>
+                <iframe id="dynamicIframe" title="Video stream" frameBorder="0" style="display: none;"></iframe>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <div class="container control-card">
+                <h2 class="section-title">Robot Controller</h2>
+                <div id="joystick-zone"></div>
+                <div class="debug-monitor">
+                    L Motor: <span id="val-l">90</span> | R Motor: <span id="val-r">90</span>
+                </div>
+                <p class="hint">Drag the joystick to drive the robot</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="libs/socket.io.min.js"></script>
+    <script src="libs/nipplejs.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+        const iframe = document.getElementById('dynamicIframe');
+        const placeholder = document.getElementById('videoPlaceholder');
+        const streamUrl = `http://${window.location.hostname}:4912/embed`;
+        
+        let intervalId = setInterval(() => { 
+            iframe.src = streamUrl; 
+        }, 1000);
+
+        iframe.onload = () => { 
+            clearInterval(intervalId); 
+            placeholder.style.display = 'none'; 
+            iframe.style.display = 'block'; 
+        };
+    </script>
+</body>
+</html>
