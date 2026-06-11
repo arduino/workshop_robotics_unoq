@@ -101,6 +101,12 @@ body {
 .nipple .back { background: rgba(0, 129, 132, 0.1) !important; border: 2px solid #008184 !important; }
 .nipple .front { background: #008184 !important; }
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
     .main-content { flex-direction: column; }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+    .main-content { flex-direction: row; }
+    #video-container { min-height: unset; }
+    #joystick-zone { height: 180px; }
 }
