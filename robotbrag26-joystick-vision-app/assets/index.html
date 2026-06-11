@@ -48,7 +48,8 @@
         iframe.onload = () => { 
             clearInterval(intervalId); 
             placeholder.style.display = 'none'; 
-            iframe.style.display = 'block'; 
+            iframe.style.display = 'block';
+            window.dispatchEvent(new Event('resize'));
         };
     </script>
 </body>
