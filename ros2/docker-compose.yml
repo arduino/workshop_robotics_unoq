@@ -1,0 +1,20 @@
+services:
+  ros2:
+    build: .
+    image: ros2-jazzy-unoq
+    container_name: ros2_jazzy
+    network_mode: host
+    ipc: host
+    environment:
+      - ROS_DOMAIN_ID=0
+    volumes:
+      # The whole workspace lives on the host, so it stays identical to the
+      # container: sources you edit and the build/ install/ log/ folders all
+      # persist across container rebuilds and removals.
+      - ./ros2_ws:/ros2_ws
+      # Uncomment to access UNO Q serial ports
+      # - /dev:/dev
+    # privileged: true
+    stdin_open: true
+    tty: true
+    command: bash
