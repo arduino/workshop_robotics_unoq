@@ -14,6 +14,8 @@ services:
       - ./ros2_ws:/ros2_ws
       # Uncomment to access UNO Q serial ports
       # - /dev:/dev
+      # Uncomment this to access the router socket and unlock the RPCs
+      # - /run/arduino-router.sock:/run/arduino-router.sock
     # privileged: true
     stdin_open: true
     tty: true
